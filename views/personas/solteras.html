@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.0/css/bootstrap.min.css" rel="stylesheet" />
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bulma/0.9.3/css/bulma.min.css">
+    <title>Personas Registradas</title>
+    <style>
+        body {
+            background-image: url('/resources/images/img-fondo-boda.png');
+            background-size: cover;
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            color: #333;
+            height: 100vh;
+        }
+
+        .container {
+            margin: 50px auto;
+            max-width: 1200px;
+            background-color: rgba(255, 255, 255, 0.9);
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            padding: 20px;
+        }
+
+        h1 {
+            text-align: center;
+            font-size: 24px;
+            margin-bottom: 20px;
+        }
+
+        .table {
+            width: 100%;
+        }
+
+        .table td img {
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            object-fit: cover;
+        }
+
+        .button {
+            margin: 0 5px;
+        }
+
+        .button a {
+            text-decoration: none;
+        }
+
+        .pagination {
+            justify-content: center;
+            margin-top: 20px;
+
+        }
+
+        .pagination a {
+            background-color: bisque;
+        }
+    </style>
+</head>
+
+<body>
+    <div id="nav-placeholder"></div>
+
+    <div class="container">
+        <h1 class="title">Personas Registradas</h1>
+        <div class="table-container">
+            <table class="table is-bordered is-striped is-hoverable is-fullwidth">
+                <thead>
+                    <tr>
+                        <th>Imagen</th>
+                        <th>Nombre</th>
+                        <th>E-mail</th>
+                        <th>Fecha de Nacimiento</th>
+                        <th>Sexo</th>
+                        <th>Estado Civil</th>
+                        <th>Opciones</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>
+                            <img src="/resources/images/personas/img-1.jpeg" alt="Carlos Méndez">
+                        </td>
+                        <td>Carlos Méndez</td>
+                        <td>carlos.mendez@example.com</td>
+                        <td>1989-02-15</td>
+                        <td>Hombre</td>
+                        <td>Soltero</td>
+                        <td>
+                            <button class="button is-primary"><a href="/views/others_views/modificarPersona.html"
+                                    style="color: white;">Modificar</a></button>
+                            <button class="button is-danger" onclick="eliminarPersona(132)">Eliminar</button>
+                        </td>
+                    </tr>
+
+                </tbody>
+            </table>
+        </div>
+
+        <nav class="pagination is-centered" role="navigation" aria-label="pagination">
+            <a class="pagination-previous" href="#">&#171; Anterior</a>
+            <a class="pagination-next" href="#">Siguiente &#187;</a>
+        </nav>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.0/js/bootstrap.bundle.min.js"></script>
+    <script>
+        function eliminarPersona(id) {
+            Swal.fire({
+                title: '¿Estás seguro?',
+                text: "Esta acción no se puede deshacer",
+                icon: 'warning',
+                showCancelButton: true,
+                confirmButtonColor: '#3085d6',
+                cancelButtonColor: '#d33',
+                confirmButtonText: 'Sí, eliminar',
+                cancelButtonText: 'Cancelar'
+            }).then((result) => {
+                if (result.isConfirmed) {
+                    Swal.fire(
+                        '¡Eliminado!',
+                        'La persona ha sido eliminada correctamente.',
+                        'success'
+                    );
+                }
+            });
+
+
+        }
+
+        // Insertar el contenido de nav.html en el placeholder
+        fetch('/resources/partials/navigation.html')
+            .then(response => response.text())
+            .then(data => {
+                document.getElementById('nav-placeholder').innerHTML = data;
+            });
+    </script>
+</body>
+
+</html>

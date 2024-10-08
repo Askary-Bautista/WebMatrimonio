@@ -1,0 +1,103 @@
+/* General reset */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+/* Estilos para la navegación horizontal */
+.nav-horizontal {
+    background-color: #a88226;
+    padding: 10px 20px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+
+}
+
+/* Estilos para la disposición en el nav */
+.layout-nav {
+    list-style: none;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+}
+
+/* Estilos para los enlaces de navegación */
+.nav-link {
+    color: #faf9ec;
+    text-decoration: none;
+    font-size: 1.2rem;
+    margin-right: 20px;
+    font-size: x-large;
+}
+
+.nav-link:hover {
+    color: #decf66;
+}
+
+/* Flexbox para los botones de Unirse y Registrarse */
+.container-buttons {
+    display: flex;
+    justify-content: flex-end;
+}
+
+.row {
+    display: flex;
+    gap: 20px;
+}
+
+.btn {
+    background-color: transparent;
+    border: 1px solid #faf9ec;
+    padding: 5px 15px;
+    border-radius: 5px;
+}
+
+.btn:hover {
+    color: #f3c966;
+    border-color: #f3c966;
+}
+
+/* Estilos para la sección de bienvenida */
+.background-section {
+    background-image: url('/resources/images/img-fondo-boda.png');
+    background-size: cover;
+    background-position: center;
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border: solid 1px;
+}
+
+.content-box {
+
+    text-align: center;
+    background-image: linear-gradient(to bottom,
+            rgba(168, 130, 38, 0.7),
+            /* #a88226 con opacidad del 50% */
+            rgba(168, 130, 38, 0.2));
+    padding: 20px 40px;
+    border-radius: 10px;
+}
+
+.welcome-text {
+    color: #faf9ec;
+    margin-bottom: 10px;
+    font-family: 'Arial', sans-serif;
+}
+
+/* Estilos adicionales para mejorar la visibilidad del texto */
+.welcome-text h1 {
+    font-size: 2.5rem;
+}
+
+.welcome-text h2 {
+    font-size: 2rem;
+}
+
+.welcome-text h3 {
+    font-size: 1.5rem;
+}

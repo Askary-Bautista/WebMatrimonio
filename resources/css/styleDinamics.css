@@ -1,0 +1,96 @@
+/* Estilo dinámico para el botón de subir archivo */
+.btnAddFile {
+    border: none;
+    display: flex;
+    padding: 0.75rem 1.5rem;
+    background-color: #d0b906a8;
+    color: #ffffff;
+    font-size: 0.95rem;
+    line-height: 1rem;
+    font-weight: 700;
+    text-align: center;
+    cursor: pointer;
+    text-transform: uppercase;
+    vertical-align: middle;
+    align-items: center;
+    border-radius: 0.5rem;
+    user-select: none;
+    gap: 0.75rem;
+    box-shadow:
+        0 4px 6px -1px #488aec31,
+        0 2px 4px -1px #488aec17;
+    transition: all 0.6s ease;
+}
+
+.btnAddFile:hover {
+    box-shadow:
+        0 10px 15px -3px #488aec4f,
+        0 4px 6px -2px #488aec17;
+}
+
+.btnAddFile:focus,
+.btnAddFile:active {
+    opacity: 0.85;
+    box-shadow: none;
+}
+
+.icon-svg {
+    width: 1.25rem;
+    height: 1.25rem;
+    margin-right: 0.5rem;
+}
+
+/* Ocultar el campo de entrada real */
+.custom-file-container {
+    position: relative;
+}
+
+.custom-file-container input[type="file"] {
+    position: absolute;
+    top: 0;
+    left: 0;
+    opacity: 0;
+    cursor: pointer;
+    width: 100%;
+    height: 100%;
+}
+
+/* ---------------------------------------------------------------------------------------------------   */
+/* From Uiverse.io by cssbuttons-io */
+/* Ocultar checkbox original */
+.checkbox-wrapper input[type="checkbox"] {
+    display: none;
+}
+
+.checkbox-wrapper .terms-label {
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+}
+
+
+.checkbox-wrapper .checkbox-svg {
+    width: 2000px;
+    height: 50px;
+}
+
+.checkbox-wrapper .checkbox-box {
+    fill: rgba(234, 219, 58, 0.505);
+    stroke: #d0b806;
+    stroke-dasharray: 800;
+    stroke-dashoffset: 800;
+    transition: stroke-dashoffset 0.9s ease-in;
+}
+
+.checkbox-wrapper .checkbox-tick {
+    stroke: #d0b806;
+    stroke-dasharray: 172;
+    stroke-dashoffset: 172;
+    transition: stroke-dashoffset 0.6s ease-in;
+}
+
+/* Cambios al seleccionar la casilla */
+.checkbox-wrapper input[type="checkbox"]:checked+.terms-label .checkbox-box,
+.checkbox-wrapper input[type="checkbox"]:checked+.terms-label .checkbox-tick {
+    stroke-dashoffset: 0;
+}

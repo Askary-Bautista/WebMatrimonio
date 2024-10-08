@@ -1,0 +1,228 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Gráficas</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.3/css/bulma.min.css">
+
+    <style>
+        body {
+            background-image: url('/resources/images/img-fondo-boda.png');
+            background-size: cover;
+            height: 100vh;
+        }
+
+        .box {
+            height: auto;
+            /* Hace que el contenido dentro del contenedor sea desplazable si se excede la altura */
+        }
+
+        .container-graficas {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 20px;
+            max-width: 100%;
+            margin: 0 auto;
+        }
+
+        .graficas-container {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            max-width: 100%;
+            width: 100%;
+            max-height: 55vh;
+            /* Ajusta la altura máxima del contenedor de las gráficas */
+
+        }
+
+        .graficas-chart canvas {
+            width: 100% !important;
+            height: auto !important;
+            max-height: 60vh;
+            /* Limita la altura de las gráficas para evitar que ocupen demasiado espacio */
+            border-radius: 5px;
+            background-color: #ffffff;
+            padding: 20px;
+        }
+
+        .buttons.is-centered {
+            flex-wrap: wrap;
+        }
+
+        .graficas-buttons {
+            gap: 10px;
+        }
+    </style>
+
+</head>
+
+<body>
+    <div id="nav-placeholder"></div>
+    <!-- Contenedor Principal -->
+    <section class="section" id="section-graficas">
+        <div class="container">
+            <div class="box">
+                <h1 class="title">Gráficas</h1>
+
+                <!-- Formulario para seleccionar año -->
+                <form method="GET" action="graficas" class="mb-4">
+                    <div class="columns">
+                        <div class="column is-10">
+                            <label class="label" for="year">Año</label>
+                            <input type="number" class="input" id="year" name="year" value="2024" min="1900" max="2024">
+                        </div>
+                        <div class="column is-2 is-flex is-align-items-flex-end">
+                            <button type="submit" class="button is-success">Actualizar</button>
+                        </div>
+                    </div>
+                </form>
+
+                <!-- Botones para alternar entre las gráficas -->
+                <div class="buttons has-addons is-centered graficas-buttons">
+                    <button class="button is-primary graficas-button"
+                        data-target="matrimoniosPorMesChartContainer">Matrimonios
+                        por Mes</button>
+                    <button class="button is-primary graficas-button" data-target="estadosCivilesChartContainer">Estados
+                        Civiles</button>
+                    <button class="button is-primary graficas-button" data-target="generosChartContainer">Comparación de
+                        Géneros</button>
+                </div>
+
+                <!-- Contenedor de Gráficas -->
+                <div id="chartsContainer" class="graficas-container">
+                    <div class="graficas-chart" id="matrimoniosPorMesChartContainer">
+                        <canvas id="matrimoniosPorMesChart"></canvas>
+                    </div>
+                    <div class="graficas-chart" id="estadosCivilesChartContainer">
+                        <canvas id="estadosCivilesChart"></canvas>
+                    </div>
+                    <div class="graficas-chart" id="generosChartContainer">
+                        <canvas id="generosChart"></canvas>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Chart.js -->
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            // Mostrar la gráfica de "Matrimonios por Mes" por defecto
+            document.getElementById('matrimoniosPorMesChartContainer').style.display = 'block';
+
+            // Datos para las gráficas
+            const dataSexo = {
+                labels: ['Hombre', 'Mujer'],
+                datasets: [{
+                    label: 'Distribución por Sexo',
+                    data: [4, 3],
+                    backgroundColor: ['#3498db', '#e74c3c', '#9b59b6'],
+                    hoverOffset: 4
+                }]
+            };
+
+            const dataEstadoCivil = {
+                labels: ['Soltero', 'Casado', 'Divorciado', 'Viudo', 'Otro'],
+                datasets: [{
+                    label: 'Estado Civil',
+                    data: [1, 2, 2, 1, 1],
+                    backgroundColor: ['#f39c12', '#2ecc71', '#e74c3c', '#34495e', '#95a5a6'],
+                    hoverOffset: 4
+                }]
+            };
+
+            const dataMatrimonios = {
+                labels: ['Enero', 'Febrero', 'Marzo', 'Abril', 'Mayo', 'Junio', 'Julio', 'Agosto', 'Septiembre', 'Octubre', 'Noviembre', 'Diciembre'],
+                datasets: [{
+                    label: 'Matrimonios por Mes',
+                    data: [12, 19, 3, 5, 2, 3, 10, 15, 8, 6, 14, 9],
+                    backgroundColor: [
+                        'rgba(255, 99, 132, 0.2)', // Enero
+                        'rgba(54, 162, 235, 0.2)', // Febrero
+                        'rgba(255, 206, 86, 0.2)', // Marzo
+                        'rgba(75, 192, 192, 0.2)', // Abril
+                        'rgba(153, 102, 255, 0.2)', // Mayo
+                        'rgba(255, 159, 64, 0.2)', // Junio
+                        'rgba(255, 99, 132, 0.2)', // Julio
+                        'rgba(54, 162, 235, 0.2)', // Agosto
+                        'rgba(255, 206, 86, 0.2)', // Septiembre
+                        'rgba(75, 192, 192, 0.2)', // Octubre
+                        'rgba(153, 102, 255, 0.2)', // Noviembre
+                        'rgba(255, 159, 64, 0.2)'  // Diciembre
+                    ],
+                    borderColor: [
+                        'rgba(255, 99, 132, 1)',
+                        'rgba(54, 162, 235, 1)',
+                        'rgba(255, 206, 86, 1)',
+                        'rgba(75, 192, 192, 1)',
+                        'rgba(153, 102, 255, 1)',
+                        'rgba(255, 159, 64, 1)',
+                        'rgba(255, 99, 132, 1)',
+                        'rgba(54, 162, 235, 1)',
+                        'rgba(255, 206, 86, 1)',
+                        'rgba(75, 192, 192, 1)',
+                        'rgba(153, 102, 255, 1)',
+                        'rgba(255, 159, 64, 1)'
+                    ],
+                    borderWidth: 1
+                }]
+            };
+
+
+            // Inicialización de gráficas
+            // Configura las opciones de Chart.js para hacer las gráficas responsivas
+            const opcionesGrafica = {
+                responsive: true, // Ajusta la gráfica automáticamente
+                maintainAspectRatio: false, // Permite ajustar el tamaño al contenedor
+            };
+
+            const matrimoniosPorMesChart = new Chart(document.getElementById('matrimoniosPorMesChart'), {
+                type: 'bar',
+                data: dataMatrimonios,
+                options: opcionesGrafica // Añade las opciones aquí
+            });
+
+            const estadosCivilesChart = new Chart(document.getElementById('estadosCivilesChart'), {
+                type: 'pie',
+                data: dataEstadoCivil,
+                options: opcionesGrafica // Añade las opciones aquí
+            });
+
+            const generosChart = new Chart(document.getElementById('generosChart'), {
+                type: 'doughnut',
+                data: dataSexo,
+                options: opcionesGrafica // Añade las opciones aquí
+            });
+
+            // Manejador para cambiar entre gráficas
+            document.querySelectorAll('.graficas-button').forEach(button => {
+                button.addEventListener('click', function () {
+                    showChart(this.getAttribute('data-target'));
+                });
+            });
+
+            function showChart(chartId) {
+                // Ocultar todas las gráficas
+                document.querySelectorAll('.graficas-chart').forEach(chart => chart.style.display = 'none');
+                // Mostrar la gráfica seleccionada
+                document.getElementById(chartId).style.display = 'block';
+            }
+
+            // Cargar la navegación desde un archivo externo
+            fetch('/resources/partials/navigation.html')
+                .then(response => response.text())
+                .then(data => {
+                    document.getElementById('nav-placeholder').innerHTML = data;
+                });
+        });
+    </script>
+
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <!-- Quitar la segunda carga de Chart.js -->
+</body>
+
+</html>

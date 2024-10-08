@@ -1,0 +1,159 @@
+<link href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.0/css/bootstrap.min.css" rel="stylesheet" />
+
+<style>
+    body {
+        background-size: cover;
+        font-family: Arial, sans-serif;
+        margin: 0;
+        padding: 0;
+        color: #333;
+    }
+
+    /* Estilos para el nav */
+    .nav-hor-index {
+        background-color: #806200;
+        padding: 15px;
+        box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    }
+
+    /* Contenedor principal del nav */
+    .layout-nav-hor {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        list-style: none;
+        margin: 0;
+        padding: 0;
+    }
+
+    /* Enlaces del nav */
+    .nav-a-index {
+        color: #ffffff;
+        padding: 10px 20px;
+        text-decoration: none;
+        font-weight: 600;
+        transition: background-color 0.3s ease, color 0.3s ease;
+        border-radius: 5px;
+    }
+
+    /* Efecto hover en los enlaces */
+    .nav-a-index:hover {
+        background-color: #ffffff;
+        color: #004080;
+    }
+
+    /* Dropdown personalizado */
+    .dropdown-toggle {
+        background-color: #807500;
+        color: #ffffff;
+        border: none;
+        font-weight: 600;
+        padding: 10px 20px;
+    }
+
+    .dropdown-menu {
+        background-color: #f0f0f0;
+        border: none;
+    }
+
+    .dropdown-item {
+        color: #7e8000;
+        padding: 10px 20px;
+        transition: background-color 0.3s ease, color 0.3s ease;
+    }
+
+    .dropdown-item:hover {
+        background-color: #d9ebb6;
+        color: #ffffff;
+    }
+
+    /* Contenedor del nav y distribución */
+    .box-nav-1,
+    .box-nav-2 {
+        display: flex;
+        gap: 20px;
+        align-items: center;
+        /* Asegura que todos los elementos estén alineados verticalmente */
+    }
+
+    /* Botón de cerrar sesión */
+    .nav-a-index.logout {
+        background-color: #ff5a5a;
+        color: white;
+        padding: 10px 15px;
+        border-radius: 5px;
+    }
+
+    .nav-a-index.logout:hover {
+        background-color: #ff0000;
+        color: white;
+    }
+
+    /* Asegurarse de que el dropdown esté alineado correctamente */
+    .nav-item.dropdown {
+        position: relative;
+    }
+
+    .dropdown-toggle::after {
+        margin-left: 10px;
+        /* Añade espacio entre el texto y el ícono de dropdown */
+    }
+
+    /* Responsive */
+    @media (max-width: 768px) {
+        .layout-nav-hor {
+            flex-direction: column;
+            align-items: center;
+        }
+
+        .box-nav-1,
+        .box-nav-2 {
+            flex-direction: column;
+            gap: 10px;
+        }
+    }
+</style>
+
+<body>
+    <header>
+        <nav class="nav-hor-index">
+            <ul class="layout-nav-hor">
+                <!-- Grupo de enlaces principales -->
+                <li class="box-nav-1">
+                    <a class="nav-a-index" href="/index.html">Home</a>
+                    <a class="nav-a-index" href="/views/others_views/registrarPersona.html">Registrar</a>
+                    <a class="nav-a-index" href="/views/others_views/matrimonios.html">Matrimonios</a>
+                    <a class="nav-a-index" href="/views/dashboard.html">Todos</a>
+
+                    <!-- Dropdown -->
+                    <div class="nav-item dropdown">
+                        <a class="nav-a-index dropdown-toggle btn" data-bs-toggle="dropdown" href="#" role="button"
+                            aria-expanded="false">Mostrar Personas</a>
+                        <ul class="dropdown-menu">
+                            <li><a class="dropdown-item" href="/views/personas/casadas.html">Casadas</a></li>
+                            <li><a class="dropdown-item" href="/views/personas/solteras.html">Solteras</a></li>
+                            <li><a class="dropdown-item" href="/views/personas/divorciadas.html">Divorciadas</a></li>
+                            <li><a class="dropdown-item" href="/views/personas/viudas.html">Viudas</a></li>
+                            <li><a class="dropdown-item" href="/views/personas/otros.html">Otro</a></li>
+                        </ul>
+                    </div>
+                    <a class="nav-a-index" href="/views/others_views/graficas.html">Gráficas</a>
+                </li>
+
+                <!-- Grupo de enlaces secundarios (cerrar sesión) -->
+                <li class="box-nav-2">
+                    <a class="nav-a-index" href="/views/others_views/casar.html">Casar</a>
+                    <a class="nav-a-index logout"
+                        href="https://portafolio-profesional-kappa.vercel.app/views/others_views/projects.html"
+                        onclick="confirmLogout()">Salir</a>
+                    <form id="logout-form" method="POST" style="display: none;">
+                        @csrf
+                    </form>
+                </li>
+            </ul>
+        </nav>
+    </header>
+</body>
+
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.0/js/bootstrap.bundle.min.js"></script>

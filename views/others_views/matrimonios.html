@@ -1,0 +1,264 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Matrimonios</title>
+    <!-- Incluye Bulma para el diseño -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.0/css/bootstrap.min.css" rel="stylesheet" />
+
+    <link href="https://cdn.jsdelivr.net/npm/bulma@0.9.3/css/bulma.min.css" rel="stylesheet">
+    <style>
+        section {
+            background-image: url('/resources/images/img-fondo-boda.png');
+            background-size: cover;
+            height: 100vh;
+        }
+
+        .img-tabla-personas {
+            width: 70px;
+            /* Ajusté el tamaño de las imágenes a 70x70 píxeles */
+            height: 70px;
+            object-fit: cover;
+            /* Asegura que la imagen cubra el área sin distorsionarse */
+        }
+
+        .rounded-circle {
+            border-radius: 50%;
+            /* Cambiado para que se aplique un 50% en lugar de 70% */
+        }
+
+        /* Alineación vertical en las celdas */
+        td,
+        th {
+            vertical-align: middle !important;
+        }
+
+        /* Estilo para centrar correctamente las imágenes y los nombres */
+        .persona-info {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 15px;
+        }
+
+        /* Centrar el contenido de las celdas */
+        .text-center {
+            text-align: center;
+        }
+
+        @media (max-width: 768px) {
+            .table {
+                overflow-x: auto;
+                /* Permitir desplazamiento horizontal en pantallas pequeñas */
+                display: block;
+                /* Cambiar el comportamiento de la tabla para permitir el desplazamiento */
+                white-space: nowrap;
+                /* Evitar el ajuste de línea en las celdas */
+            }
+
+            th,
+            td {
+                white-space: nowrap;
+                /* Asegurarse de que el contenido no se ajuste a varias líneas */
+            }
+
+            .persona-info {
+                flex-direction: column;
+                /* Cambia la dirección del flex a columna en pantallas pequeñas */
+                align-items: flex-start;
+                /* Alinea los elementos al inicio */
+            }
+
+            .img-tabla-personas {
+                width: 50px;
+                /* Reduce el tamaño de las imágenes en pantallas pequeñas si es necesario */
+                height: 50px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <section>
+
+        <div id="nav-placeholder"></div>
+        <div class="container my-4">
+            <div class="card">
+                <header class="card-header">
+                    <p class="card-header-title is-centered">Matrimonios Totales</p>
+                    <p class="card-header-icon">
+                        <span class="tag is-info" id="totalMatrimonios">0</span>
+                    </p>
+                </header>
+                <div class="card-content">
+                    <table class="table is-striped is-bordered is-hoverable is-fullwidth is-responsive">
+                        <thead>
+                            <tr>
+                                <th class="text-center">Matrimonio</th>
+                                <th class="text-center">Fecha de Boda</th>
+                                <th class="text-center">Cláusula</th>
+                                <th class="text-center">Opciones</th>
+                            </tr>
+                        </thead>
+                        <tbody id="matrimonios-list">
+                            <!-- Las filas de los matrimonios se insertarán aquí dinámicamente -->
+                        </tbody>
+                        <tfoot>
+                            <tr>
+                                <td colspan="3" class="text-center">
+                                    <nav class="pagination is-centered" role="navigation" aria-label="pagination">
+                                        <!-- Paginación si la hay -->
+                                    </nav>
+                                </td>
+                            </tr>
+                        </tfoot>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Modal HTML -->
+    <div id="invitacionModal" class="modal">
+        <div class="modal-background"></div>
+        <div class="modal-content">
+            <div class="box">
+                <span class="delete" aria-label="close"></span>
+                <div id="modal-body">
+                    <!-- Aquí se cargará el contenido de la vista invitacion -->
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            // Simular datos de matrimonios (en lugar de obtenerlos del servidor)
+            var matrimonios = [
+                {
+                    id: 1,
+                    persona1: { name: "Johsn Resy", image: "/resources/images/personas/img-4.jpeg" },
+                    persona2: { name: "Arthur Day", image: "/resources/images/personas/img-3.jpg" },
+                    fecha_boda: "12-12-2020",
+                    clausula: "Sin separación de bienes"
+                }
+            ];
+
+            // Mostrar número total de matrimonios
+            document.getElementById("totalMatrimonios").textContent = matrimonios.length;
+
+            // Insertar filas dinámicamente
+            var tbody = document.getElementById("matrimonios-list");
+            matrimonios.forEach(function (matrimonio) {
+                var tr = document.createElement("tr");
+
+                // Columna de Matrimonio
+                var matrimonioCol = document.createElement("td");
+                var matrimonioDiv = document.createElement("div");
+                matrimonioDiv.classList.add("persona-info");
+
+                var imgPersona1 = document.createElement("img");
+                imgPersona1.src = matrimonio.persona1.image || "default-image.png";
+                imgPersona1.alt = "Imagen de " + matrimonio.persona1.name;
+                imgPersona1.classList.add("img-tabla-personas", "img-fluid", "rounded-circle");
+                matrimonioDiv.appendChild(imgPersona1);
+
+
+                var persona1Name = document.createElement("span");
+                persona1Name.textContent = matrimonio.persona1.name;
+                matrimonioDiv.appendChild(persona1Name);
+
+                var imgPersona2 = document.createElement("img");
+                imgPersona2.src = matrimonio.persona2.image || "default-image.png";
+                imgPersona2.alt = "Imagen de " + matrimonio.persona2.name;
+                imgPersona2.classList.add("img-tabla-personas", "img-fluid", "rounded-circle");
+                matrimonioDiv.appendChild(imgPersona2);
+
+                var persona2Name = document.createElement("span");
+                persona2Name.textContent = matrimonio.persona2.name;
+                matrimonioDiv.appendChild(persona2Name);
+
+                matrimonioCol.appendChild(matrimonioDiv);
+                tr.appendChild(matrimonioCol);
+
+                // Columna de Fecha de Boda
+                var fechaBodaCol = document.createElement("td");
+                fechaBodaCol.textContent = matrimonio.fecha_boda;
+                tr.appendChild(fechaBodaCol);
+                
+                // Columna de Cláusula
+                var clausulaCol = document.createElement("td");
+                clausulaCol.textContent = matrimonio.clausula;
+                tr.appendChild(clausulaCol);
+
+                var opcionesCol =document.createElement("td");
+                opcionesCol.innerHTML = `
+                    <div class="buttons is-centered">
+                        <button class="button is-info open-modal" data-id="${matrimonio.id}">Ver Invitación</button>
+                        <button class="button is-primary btn-enviar-correo" data-id="${matrimonio.id}">Enviar Correo</button>
+                        <button class="button is-success btn-descargar-acta" data-id="${matrimonio.id}">Abrir Acta</button>
+                        <button class="button is-danger btn-divorciar" data-id="${matrimonio.id}">Divorciar</button>
+                    </div>
+                `;
+
+                tr.appendChild(opcionesCol);
+
+                // Añadir la fila a la tabla
+                tbody.appendChild(tr);
+            });
+
+            // Modal funcionalidad
+            var modal = document.getElementById("invitacionModal");
+            var closeModal = document.querySelector(".delete");
+
+            closeModal.onclick = function () {
+                modal.classList.remove("is-active");
+            };
+
+            window.onclick = function (event) {
+                if (event.target == modal) {
+                    modal.classList.remove("is-active");
+                }
+            };
+
+            document.querySelectorAll('.open-modal').forEach(button => {
+                button.addEventListener('click', function () {
+                    var id = this.getAttribute('data-id');
+                    document.getElementById('modal-body').innerHTML = `<h1 class="title">Invitación de Matrimonio ${id}</h1>`;
+                    modal.classList.add("is-active");
+                });
+            });
+
+            document.querySelectorAll('.btn-enviar-correo').forEach(button => {
+                button.addEventListener('click', function () {
+                    alert('Correo enviado para el matrimonio ID: ' + this.getAttribute('data-id'));
+                });
+            });
+
+            document.querySelectorAll('.btn-descargar-acta').forEach(button => {
+                button.addEventListener('click', function () {
+                    alert('Descargando acta de matrimonio ID: ' + this.getAttribute('data-id'));
+                });
+            });
+
+            document.querySelectorAll('.btn-divorciar').forEach(button => {
+                button.addEventListener('click', function () {
+                    if (confirm('¿Estás seguro de que deseas divorciar a estas personas?')) {
+                        alert('Personas divorciadas, Matrimonio ID: ' + this.getAttribute('data-id'));
+                    }
+                });
+            });
+
+            fetch('/resources/partials/navigation.html')
+                .then(response => response.text())
+                .then(data => document.getElementById('nav-placeholder').innerHTML = data);
+        });
+    </script>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.0/js/bootstrap.bundle.min.js"></script>
+</body>
+
+</html>

@@ -1,0 +1,185 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login</title>
+    <link rel="stylesheet" href="/resources/css/style.css">
+</head>
+<style>
+    /* General styles */
+    * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+    }
+
+    body {
+        font-family: Arial, sans-serif;
+        background-color: #f4f4f4;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 100vh;
+        background-image: url('/resources/images/img-fondo-boda.png');
+        background-size: cover;
+        background-position: center;
+    }
+
+    .login-container {
+        background-color: #ffffff;
+        padding: 25px;
+        border-radius: 10px;
+        box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+        max-width: 400px;
+        width: 100%;
+        opacity: 0.9;
+    }
+
+    .input-group {
+        margin-bottom: 20px;
+    }
+
+    label {
+        display: block;
+        font-weight: bold;
+        margin-bottom: 8px;
+        color: #2f4f4f;
+    }
+
+    .input-field {
+        width: 100%;
+        padding: 12px;
+        border: 1px solid #ccc;
+        border-radius: 4px;
+        font-size: 1rem;
+        background-color: #fafafa;
+    }
+
+    .error-message {
+        color: #ff4d4d;
+        font-size: 0.875rem;
+        margin-top: 5px;
+    }
+
+    .checkbox-label {
+        display: flex;
+        align-items: center;
+    }
+
+    .checkbox-field {
+        margin-right: 10px;
+    }
+
+    /* Button styles */
+    .btn-primary {
+        background-color: #b2a540;
+        color: white;
+        border: none;
+        padding: 12px 25px;
+        border-radius: 4px;
+        cursor: pointer;
+        font-size: 1rem;
+        transition: background-color 0.3s ease;
+    }
+
+    a.btn-primary {
+        text-decoration: none;
+        color: #ffffff;
+    }
+
+    .btn-primary:hover {
+        background-color: #efe886;
+    }
+
+    .btnLogIn {
+        text-decoration: none;
+        color: #f4f4f4;
+    }
+
+    .btnGotToWelcome {
+        background-color: #705844;
+    }
+
+    /* Forgot password link */
+    .forgot-password {
+        text-decoration: none;
+        color: #6a5acd;
+        font-size: 0.9rem;
+        margin-right: 10px;
+        transition: color 0.3s ease;
+    }
+
+    .forgot-password:hover {
+        color: #483d8b;
+    }
+
+    /* Flex utility */
+    .flex {
+        display: flex;
+        align-items: center;
+    }
+
+    .justify-end {
+        justify-content: flex-end;
+    }
+
+    .mt-4 {
+        margin-top: 16px;
+    }
+
+    .mb-4 {
+        margin-bottom: 16px;
+    }
+</style>
+
+<body>
+    <div class="login-container">
+        <!-- Session Status -->
+        <div id="session-status" class="mb-4">
+            <!-- Aquí puedes mostrar el estado de la sesión si es necesario -->
+        </div>
+
+        <form method="POST" action="/views/dashboard.html">
+            <!-- Token CSRF si es necesario -->
+            <input type="hidden" name="_token" value="csrf_token_aqui">
+
+            <!-- Email Address -->
+            <div class="input-group">
+                <label for="email">Email</label>
+                <input id="email" type="email" name="email" required autofocus autocomplete="username"
+                    class="input-field" value="admin@example.com">
+                <!-- Mostrar errores si los hay -->
+                <div class="error-message" id="email-error"></div>
+            </div>
+
+            <!-- Password -->
+            <div class="input-group mt-4">
+                <label for="password">Password</label>
+                <input id="password" type="password" name="password" required autocomplete="current-password"
+                    class="input-field" value="12345678">
+                <!-- Mostrar errores si los hay -->
+                <div class="error-message" id="password-error"></div>
+            </div>
+
+            <!-- Remember Me -->
+            <div class="input-group mt-4">
+                <label for="remember_me" class="checkbox-label">
+                    <input id="remember_me" type="checkbox" name="remember" class="checkbox-field">
+                    <span>Remember me</span>
+                </label>
+            </div>
+
+            <div class="flex justify-end mt-4">
+                <button type="submit" class="btn-primary"> Log In</button>
+            </div>
+        </form>
+
+        <div class="flex justify-end mt-4">
+            <a class="btnGotToWelcome btn-primary" href="/index.html">Go to Welcome</a>
+        </div>
+    </div>
+</body>
+
+</html>

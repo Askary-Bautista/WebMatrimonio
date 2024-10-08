@@ -1,0 +1,351 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Casamiento</title>
+    <link rel="stylesheet" href="https://code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/sweetalert2@11/dist/sweetalert2.min.css">
+
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.0/css/bootstrap.min.css" rel="stylesheet" />
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bulma/0.9.3/css/bulma.min.css">
+
+
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+</head>
+
+<style>
+    body {
+        background-image: url('/resources/images/img-fondo-boda.png');
+        background-size: cover;
+    }
+
+    /* ESTILOS VISTA CASAMIENTO */
+
+    .section-casar-personas {
+        width: 100%;
+        min-height: 100vh;
+        background-image: url("../assets/images/img-fondo-boda.png");
+        background-size: cover;
+        padding: 20px;
+        box-sizing: border-box;
+    }
+
+    #box-general-casar-personas {
+        width: 100%;
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 10px;
+        margin: 0 auto;
+    }
+
+    #box-content-general-casar {
+        display: flex;
+        gap: 10px;
+        align-items: center;
+        height: 100%;
+    }
+
+    .box-casar-personas-1,
+    .box-casar-personas-2 {
+        flex: 1;
+        background-color: #f8f9fa;
+        padding: 10px;
+        border: 1px solid #ccc;
+        border-radius: 5px;
+    }
+
+    #box-content-casar-datos-1,
+    #box-content-casar-datos-2 {
+        margin-top: 10px;
+    }
+
+    .box-casar-personas-1,
+    .box-casar-personas-2,
+    .box-casar-personas-3 {
+        background-image: linear-gradient(to bottom, rgba(253, 231, 180, 0.9), rgba(168, 130, 38, 0.2));
+        border-radius: 10px;
+        padding: 20px;
+        box-sizing: border-box;
+    }
+
+    #confirmarMatrimonioForm {
+        width: 100%;
+        margin: auto;
+        display: grid;
+        grid-template-rows: repeat(3, 1fr);
+        gap: 5px;
+    }
+
+    form .box-form-imputs-casamiento {
+        width: 100%;
+        display: grid;
+        grid-template-columns: 1fr 1fr 1fr;
+        gap: 50px;
+    }
+
+    #box-idPersona1,
+    #box-idPersona2 {
+        width: min-content;
+    }
+
+    @media (max-width: 768px) {
+        #box-content-general-casar {
+            flex-direction: column;
+        }
+
+        .box-casar-personas-1,
+        .box-casar-personas-2,
+        .box-casar-personas-3 {
+            padding: 10px;
+        }
+
+        form .box-form-imputs-casamiento {
+            grid-template-columns: 1fr;
+            gap: 20px;
+        }
+
+        #box-idPersona1,
+        #box-idPersona2 {
+            width: 100%;
+        }
+
+        #box-general-casar-personas {
+            grid-template-columns: 1fr;
+        }
+
+        .box-casar-personas-1,
+        .box-casar-personas-2 {
+            grid-column: span 1;
+        }
+
+        .box-casar-personas-3 {
+            grid-template-columns: 1fr;
+        }
+    }
+
+    @media (min-width: 768px) {
+
+        .box-casar-personas-1,
+        .box-casar-personas-2 {
+            grid-column: span 2;
+        }
+
+        .box-casar-personas-3 {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+        }
+    }
+
+    /* ESTILOS SECCION BUSCAR */
+
+    #box-buscar-personas {
+        width: 100%;
+        max-width: 500px;
+    }
+
+
+    /* ESTILOS CAJA DATOS PERSONA (VISTA CASAMIENTO) */
+
+
+    .persona-result-box {
+        display: flex;
+        align-items: center;
+        padding: 10px;
+        border: 1px solid #ccc;
+        margin-bottom: 10px;
+        background-color: #f9f9f9;
+        border-radius: 5px;
+        width: max-content;
+    }
+
+    .persona-result-image img {
+        border-radius: 50%;
+        margin-right: 15px;
+    }
+
+    .persona-result-info {
+        display: flex;
+        flex-direction: column;
+    }
+</style>
+
+<body>
+    <div id="nav-placeholder"></div>
+    <section class="section-casar-personas">
+        <div id="box-general-casar-personas" class="overflow-container">
+            <div id="box-content-general-casar">
+                <div class="box-casar-personas-1">
+                    <!-- Formulario de búsqueda -->
+                    <div id="box-button-persona1">
+                        <div id="box-buscar-personas">
+                            <form id="searchForm1" class="form-inline mb-3">
+                                <input type="text" name="query" class="form-control mr-sm-2"
+                                    placeholder="Buscar personas" value="Carlos Méndez" required>
+                                <br>
+                                <button type="submit" class="btn btn-primary">Buscar</button>
+                            </form>
+                        </div>
+                    </div>
+                    <!-- Resultados de la búsqueda se mostrarán aquí -->
+                    <div id="box-content-casar-datos-1"></div>
+                </div>
+
+                <div class="box-casar-personas-2">
+                    <!-- Formulario de búsqueda -->
+                    <div id="box-button-persona2">
+                        <div id="box-buscar-personas">
+                            <form id="searchForm2" class="form-inline mb-3">
+                                <input type="text" name="query" class="form-control mr-sm-2"
+                                    placeholder="Buscar personas" value="Laura Jiménez" required>
+                                <br>
+                                <button type="submit" class="btn btn-primary">Buscar</button>
+                            </form>
+                        </div>
+                    </div>
+
+                    <!-- Resultados de la búsqueda se mostrarán aquí -->
+                    <div id="box-content-casar-datos-2"></div>
+                </div>
+            </div>
+
+            <div class="box-casar-personas-3">
+                <form id="confirmarMatrimonioForm" action="#" method="POST">
+                    <div class="box-form-imputs-casamiento">
+                        <div id="box-idPersona1">
+                            <label for="id_persona1">ID 1ra Persona</label>
+                            <input type="text" id="id_persona1" name="persona1_id" class="form-control" value="12345"
+                                readonly>
+                        </div>
+
+                        <div id="box-idPersona2">
+                            <label for="id_persona2">ID 2da Persona</label>
+                            <input type="text" id="id_persona2" name="persona2_id" class="form-control" value="67890"
+                                readonly>
+                        </div>
+
+                        <div id="box-fechaBoda">
+                            <label for="fecha_matrimonio">Ingresa Fecha para La Boda</label>
+                            <input type="date" id="fecha_matrimonio" name="fecha_matrimonio" class="form-control"
+                                value="2024-12-31">
+                        </div>
+                    </div>
+
+                    <div id="box-clausula">
+                        <label for="clausula">Cláusula</label>
+                        <textarea id="clausula" name="clausula" class="form-control"
+                            rows="1">Cláusula de prueba para el matrimonio.</textarea>
+                    </div>
+
+                    <div id="box-confirmarBoda">
+                        <button id="confirmarMatrimonioButton" type="submit" class="btn btn-primary">Confirmar
+                            Matrimonio</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contenedor de alertas -->
+    <div id="alert-container" class="mt-3"></div>
+
+    <script>
+        document.addEventListener("DOMContentLoaded", function () {
+            // Datos de ejemplo de las personas
+            const personas = {
+                "Carlos Méndez": {
+                    img: "/resources/images/personas/img-1.jpeg",
+                    email: "carlos.mendez@example.com",
+                    fechaNacimiento: "1989-02-15",
+                    genero: "Hombre",
+                    estadoCivil: "Soltero",
+                },
+                "Laura Jiménez": {
+                    img: "/resources/images/personas/img-5.jpg",
+                    email: "laura.jimenez@example.com",
+                    fechaNacimiento: "1996-05-30",
+                    genero: "Mujer",
+                    estadoCivil: "Divorciado",
+                },
+            };
+
+            document.getElementById('searchForm1').addEventListener('submit', function (event) {
+                event.preventDefault();
+                const query = this.querySelector('input[name="query"]').value;
+                mostrarResultado(query, 'box-content-casar-datos-1', 'id_persona1');
+            });
+
+            document.getElementById('searchForm2').addEventListener('submit', function (event) {
+                event.preventDefault();
+                const query = this.querySelector('input[name="query"]').value;
+                mostrarResultado(query, 'box-content-casar-datos-2', 'id_persona2');
+            });
+
+            function mostrarResultado(query, boxContentId, idInputId) {
+                const persona = personas[query];
+                const boxContent = document.getElementById(boxContentId);
+
+                if (persona) {
+                    boxContent.innerHTML = `
+                        <div class="persona-result-box">
+                            <div class="persona-result-image">
+                                <img src="${persona.img}" alt="${query}" width="50">
+                            </div>
+                            <div class="persona-result-info">
+                                <strong>${query}</strong>
+                                <p>Email: ${persona.email}</p>
+                                <p>Fecha de Nacimiento: ${persona.fechaNacimiento}</p>
+                                <p>Género: ${persona.genero}</p>
+                                <p>Estado Civil: ${persona.estadoCivil}</p>
+                            </div>
+                        </div>
+                    `;
+                    document.getElementById(idInputId).value = '12345'; // ID ficticio o real
+                } else {
+                    boxContent.innerHTML = `<p>No se encontró a la persona.</p>`;
+                }
+            }
+
+            document.getElementById('confirmarMatrimonioButton').addEventListener('click', function (event) {
+                event.preventDefault();
+
+                const persona1Id = document.getElementById('id_persona1').value;
+                const persona2Id = document.getElementById('id_persona2').value;
+                const fechaMatrimonio = document.getElementById('fecha_matrimonio').value;
+                const clausula = document.getElementById('clausula').value;
+
+                if (!persona1Id || !persona2Id) {
+                    showAlert('Ingrese los IDs de ambas personas.', 'error');
+                    return;
+                }
+
+                // Simulando una confirmación
+                showAlert('Matrimonio confirmado exitosamente.', 'success');
+            });
+
+            function showAlert(message, type) {
+                Swal.fire({
+                    icon: type,
+                    title: message,
+                    showConfirmButton: true,
+                });
+            }
+
+            fetch('/resources/partials/navigation.html')
+                .then(response => response.text())
+                .then(data => {
+                    document.getElementById('nav-placeholder').innerHTML = data;
+                });
+        });
+
+    </script>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.0/js/bootstrap.bundle.min.js"></script>
+
+</body>
+
+</html>

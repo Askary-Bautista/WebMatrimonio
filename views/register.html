@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <link rel="stylesheet" href="/resources/css/style.css">
+    <title>Registro</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+
+            background-image: url('/resources/images/img-fondo-boda.png');
+            background-size: cover;
+        }
+
+        .register-container {
+            background-color: #ffffff;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            max-width: 400px;
+            width: 100%;
+        }
+
+        .input-group {
+            margin-bottom: 15px;
+        }
+
+        label {
+            display: block;
+            font-weight: bold;
+            margin-bottom: 5px;
+        }
+
+        .input-field {
+            width: 100%;
+            padding: 10px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            font-size: 1rem;
+        }
+
+        .error-message {
+            color: red;
+            font-size: 0.875rem;
+            margin-top: 5px;
+        }
+
+        /* Button styles */
+        /* Button styles */
+        .btn-primary {
+            background-color: #b2a540;
+            color: white;
+            border: none;
+            padding: 12px 25px;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 1rem;
+            transition: background-color 0.3s ease;
+        }
+
+        a.btn-primary {
+            text-decoration: none;
+            color: #ffffff;
+        }
+
+        .btn-primary:hover {
+            background-color: #efe886;
+        }
+
+        .btnGotToWelcome {
+            background-color: #705844;
+        }
+
+
+        .mt-4 {
+            margin-top: 16px;
+        }
+
+        .flex {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+
+        .text-link {
+            text-decoration: none;
+            color: #705844;
+            font-size: 0.9rem;
+            transition: color 0.3s ease;
+        }
+
+        .text-link:hover {
+            color: #388e3c;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="register-container">
+        <form method="POST" action="/register">
+            <!-- CSRF Token -->
+            <input type="hidden" name="_token" value="csrf_token_aqui">
+
+            <!-- Name -->
+            <div class="input-group">
+                <label for="name">Name</label>
+                <input id="name" type="text" name="name" class="input-field" required autofocus>
+                <!-- Error message -->
+                <div class="error-message" id="name-error"></div>
+            </div>
+
+            <!-- Email Address -->
+            <div class="input-group mt-4">
+                <label for="email">Email</label>
+                <input id="email" type="email" name="email" class="input-field" required>
+                <!-- Error message -->
+                <div class="error-message" id="email-error"></div>
+            </div>
+
+            <!-- Password -->
+            <div class="input-group mt-4">
+                <label for="password">Password</label>
+                <input id="password" type="password" name="password" class="input-field" required>
+                <!-- Error message -->
+                <div class="error-message" id="password-error"></div>
+            </div>
+
+            <!-- Confirm Password -->
+            <div class="input-group mt-4">
+                <label for="password_confirmation">Confirm Password</label>
+                <input id="password_confirmation" type="password" name="password_confirmation" class="input-field"
+                    required>
+                <!-- Error message -->
+                <div class="error-message" id="password_confirmation-error"></div>
+            </div>
+
+            <div class="flex mt-4">
+                <a class="text-link" href="/login">Already registered?</a>
+                <button type="submit" class="btn-primary">Register</button>
+            </div>
+        </form>
+        <div class="flex justify-end mt-4">
+            <a class="btnGotToWelcome btn-primary" href="/index.html">Go to Welcome</a>
+        </div>
+    </div>
+</body>
+
+</html>

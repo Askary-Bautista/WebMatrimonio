@@ -1,0 +1,219 @@
+[
+    {
+        "type": "header",
+        "version": "5.2.1",
+        "comment": "Export to JSON plugin for PHPMyAdmin"
+    },
+    {
+        "type": "database",
+        "name": "bd-matrimonio"
+    },
+    {
+        "type": "table",
+        "name": "admins",
+        "database": "bd-matrimonio",
+        "data": [
+            {
+                "id": "2",
+                "name": "admin",
+                "email": "admin@example.com",
+                "password": "$2y$10$2VV7xKN5ElFZuWkBZLbrWO8GlD4zYkMxksiBle5jzFXC0ws9MxoqK",
+                "created_at": "2024-05-22 18:56:32",
+                "updated_at": "2024-05-22 18:56:32"
+            }
+        ]
+    },
+    {
+        "type": "table",
+        "name": "failed_jobs",
+        "database": "bd-matrimonio",
+        "data": []
+    },
+    {
+        "type": "table",
+        "name": "matrimonios",
+        "database": "bd-matrimonio",
+        "data": [
+            {
+                "id": "42",
+                "persona1_id": "130",
+                "persona2_id": "131",
+                "fecha_matrimonio": "2024-08-24",
+                "created_at": "2024-08-26 19:55:05",
+                "updated_at": "2024-08-26 19:55:05",
+                "clausula": "S\/N"
+            }
+        ]
+    },
+    {
+        "type": "table",
+        "name": "personas",
+        "database": "bd-matrimonio",
+        "data": [
+            {
+                "id": "129",
+                "name": "Keely Wood",
+                "primer_apellido": "Ad ad reprehenderit",
+                "segundo_apellido": "Quam voluptatibus do",
+                "entidad_nacimiento": "Eum dicta placeat a",
+                "municipio_nacimiento": "Fugiat aperiam exerc",
+                "nacionalidad": "Consequatur Ipsum m",
+                "nombre_madre": "Fugiat ea ad nostru",
+                "nombre_padre": "Dolor autem nesciunt",
+                "nacionalidad_madre": "Nam excepturi ducimu",
+                "nacionalidad_padre": "Et esse id nihil qui",
+                "email": "gajeger@mailinator.com",
+                "password": "$2y$10$MyS8aJxGDgXU5hBu2yHdVuJuE6sspCM9EvapDbgf4wRu6MLJ3pHIS",
+                "fecha_nacimiento": "1978-07-26",
+                "sexo": "Hombre",
+                "estado_civil": "Otro",
+                "image": "public\/perfiles\/WHolJxSIAH6EAF0pWIRirdY852r7sgasfLtjjzMM.jpg",
+                "created_at": "2024-05-29 07:00:47",
+                "updated_at": "2024-05-29 07:03:22"
+            },
+            {
+                "id": "130",
+                "name": "Johsn Resy",
+                "primer_apellido": "Bautista",
+                "segundo_apellido": "Jimenez",
+                "entidad_nacimiento": "Guerrero",
+                "municipio_nacimiento": "Chilpancingo de los Bravos",
+                "nacionalidad": "Mexicana",
+                "nombre_madre": "Rosalba Jimenez Hernandez",
+                "nombre_padre": "Eleazar Bautista Aguero",
+                "nacionalidad_madre": "Mexicana",
+                "nacionalidad_padre": "Mexicana",
+                "email": "askary@gmail.com",
+                "password": "$2y$10$izlkaSEd1L2fUzfJNs4Juu31UDipQ2OQVrt5Dw.3YXtV5UIgZYQk.",
+                "fecha_nacimiento": "1999-11-24",
+                "sexo": "Hombre",
+                "estado_civil": "Casado",
+                "image": "public\/perfiles\/oFrQmGGA0X912A3sU5HiI09PInW8K2BofX8Ltz1H.jpg",
+                "created_at": "2024-05-29 07:01:24",
+                "updated_at": "2024-08-26 19:55:05"
+            },
+            {
+                "id": "131",
+                "name": "Arthur Day",
+                "primer_apellido": "Cupiditate natus cul",
+                "segundo_apellido": "Doloribus incidunt",
+                "entidad_nacimiento": "Consectetur consequa",
+                "municipio_nacimiento": "Id sint repudiandae",
+                "nacionalidad": "Tempor doloribus lab",
+                "nombre_madre": "Porro voluptate tota",
+                "nombre_padre": "Quidem sequi molesti",
+                "nacionalidad_madre": "Sunt numquam volupt",
+                "nacionalidad_padre": "Quis blanditiis ea l",
+                "email": "sabajupoj@mailinator.com",
+                "password": "$2y$10$L37v5Gbkbk1SbA7pgrpe3eZyx.OBm5GqooRYafARP6w7bKv81oFTG",
+                "fecha_nacimiento": "1973-02-26",
+                "sexo": "Mujer",
+                "estado_civil": "Casado",
+                "image": "public\/perfiles\/yafdRPImAAW1pwurAGPKzudAHG8bHMKrPehi7Arq.jpg",
+                "created_at": "2024-05-30 05:10:15",
+                "updated_at": "2024-08-26 19:55:05"
+            },
+            {
+                "id": "132",
+                "name": "Carlos Méndez",
+                "primer_apellido": "Méndez",
+                "segundo_apellido": "Rodríguez",
+                "entidad_nacimiento": "Ciudad de México",
+                "municipio_nacimiento": "Benito Juárez",
+                "nacionalidad": "Mexicana",
+                "nombre_madre": "Juana Rodríguez",
+                "nombre_padre": "Pedro Méndez",
+                "nacionalidad_madre": "Mexicana",
+                "nacionalidad_padre": "Mexicana",
+                "email": "carlos.mendez@example.com",
+                "password": "$2y$10$ABC12345678QWERTYUIO.",
+                "fecha_nacimiento": "1989-02-15",
+                "sexo": "Hombre",
+                "estado_civil": "Soltero",
+                "image": "public\/perfiles\/carlos_mendez.jpg",
+                "created_at": "2024-09-20 10:00:00",
+                "updated_at": "2024-09-20 12:00:00"
+            },
+            {
+                "id": "133",
+                "name": "Laura Jiménez",
+                "primer_apellido": "Jiménez",
+                "segundo_apellido": "Martínez",
+                "entidad_nacimiento": "Jalisco",
+                "municipio_nacimiento": "Guadalajara",
+                "nacionalidad": "Mexicana",
+                "nombre_madre": "Ana Martínez",
+                "nombre_padre": "Luis Jiménez",
+                "nacionalidad_madre": "Mexicana",
+                "nacionalidad_padre": "Mexicana",
+                "email": "laura.jimenez@example.com",
+                "password": "$2y$10$DEF4567890ASDFGHJKL.",
+                "fecha_nacimiento": "1996-05-30",
+                "sexo": "Mujer",
+                "estado_civil": "Casado",
+                "image": "public\/perfiles\/laura_jimenez.jpg",
+                "created_at": "2024-09-21 09:30:00",
+                "updated_at": "2024-09-21 11:30:00"
+            },
+            {
+                "id": "134",
+                "name": "José Ramírez",
+                "primer_apellido": "Ramírez",
+                "segundo_apellido": "González",
+                "entidad_nacimiento": "Nuevo León",
+                "municipio_nacimiento": "Monterrey",
+                "nacionalidad": "Mexicana",
+                "nombre_madre": "Carmen González",
+                "nombre_padre": "Juan Ramírez",
+                "nacionalidad_madre": "Mexicana",
+                "nacionalidad_padre": "Mexicana",
+                "email": "jose.ramirez@example.com",
+                "password": "$2y$10$GHI987654321QWERTYU.",
+                "fecha_nacimiento": "1983-07-10",
+                "sexo": "Hombre",
+                "estado_civil": "Viudo",
+                "image": "public\/perfiles\/jose_ramirez.jpg",
+                "created_at": "2024-09-22 14:00:00",
+                "updated_at": "2024-09-22 15:00:00"
+            },
+            {
+                "id": "135",
+                "name": "Sofía Martínez",
+                "primer_apellido": "Martínez",
+                "segundo_apellido": "López",
+                "entidad_nacimiento": "Veracruz",
+                "municipio_nacimiento": "Xalapa",
+                "nacionalidad": "Mexicana",
+                "nombre_madre": "Luisa López",
+                "nombre_padre": "Carlos Martínez",
+                "nacionalidad_madre": "Mexicana",
+                "nacionalidad_padre": "Mexicana",
+                "email": "sofia.martinez@example.com",
+                "password": "$2y$10$JKL0123456789QWERTY.",
+                "fecha_nacimiento": "1992-12-05",
+                "sexo": "Mujer",
+                "estado_civil": "Divorciado",
+                "image": "public\/perfiles\/sofia_martinez.jpg",
+                "created_at": "2024-09-23 16:00:00",
+                "updated_at": "2024-09-23 17:00:00"
+            }
+        ]
+    },
+    {
+        "type": "table",
+        "name": "users",
+        "database": "bd-matrimonio",
+        "data": [
+            {
+                "id": "4",
+                "name": "Administrador",
+                "email": "admin@gmail.com",
+                "email_verified_at": null,
+                "password": "12345678",
+                "remember_token": null,
+                "created_at": "2024-05-30 06:03:07",
+                "updated_at": "2024-05-30 06:03:07"
+            }
+        ]
+    }
+]
