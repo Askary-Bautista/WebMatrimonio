@@ -141,7 +141,7 @@
             <!-- Aquí puedes mostrar el estado de la sesión si es necesario -->
         </div>
 
-        <form method="POST" action="/views/dashboard.html">
+        <form method="POST" action="./dashboard.html">
             <!-- Token CSRF si es necesario -->
             <input type="hidden" name="_token" value="csrf_token_aqui">
 
@@ -180,6 +180,26 @@
             <a class="btnGotToWelcome btn-primary" href="/index.html">Go to Welcome</a>
         </div>
     </div>
+
+    <script>
+        document.querySelector("form").addEventListener("submit", function (e) {
+            e.preventDefault();
+
+            // Validar credenciales (esto es una simulación)
+            const email = document.querySelector("#email").value;
+            const password = document.querySelector("#password").value;
+
+            if (email === "admin@example.com" && password === "12345678") {
+                // Redirigir a la vista de personas registradas
+                window.location.href = "./dashboard.html";
+            } else {
+                // Mostrar un mensaje de error
+                document.querySelector("#email-error").textContent = "Credenciales incorrectas";
+                document.querySelector("#password-error").textContent = "Credenciales incorrectas";
+            }
+        });
+    </script>
+
 </body>
 
 </html>
