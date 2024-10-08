@@ -5,23 +5,24 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.0/css/bootstrap.min.css" rel="stylesheet" />
-
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bulma/0.9.3/css/bulma.min.css">
     <title>Personas Registradas</title>
     <style>
         body {
             background-image: url('/resources/images/img-fondo-boda.png');
             background-size: cover;
+            background-position: center;
+            background-attachment: fixed;
             font-family: Arial, sans-serif;
             margin: 0;
-            padding: 0;
             color: #333;
             height: 100vh;
+            width: 100vw;
         }
 
         .container {
             margin: 50px auto;
-            max-width: 1200px;
+            max-width: 90%;
             background-color: rgba(255, 255, 255, 0.9);
             border-radius: 8px;
             box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
@@ -32,10 +33,6 @@
             text-align: center;
             font-size: 24px;
             margin-bottom: 20px;
-        }
-
-        .table {
-            width: 100%;
         }
 
         .table td img {
@@ -49,26 +46,43 @@
             margin: 0 5px;
         }
 
-        .button a {
-            text-decoration: none;
-        }
         .pagination {
             justify-content: center;
-            margin-top: 20px;
-            
         }
 
         .pagination a {
             background-color: bisque;
         }
 
-        
+        @media (max-width: 768px) {
+            .container {
+                margin: 20px auto;
+                padding: 15px;
+            }
+
+            h1 {
+                font-size: 20px;
+            }
+
+            .table td img {
+                width: 40px;
+                height: 40px;
+            }
+
+            .table {
+                font-size: 14px;
+            }
+
+            .button {
+                font-size: 12px;
+            }
+        }
     </style>
 </head>
 
 <body>
-    <div id="nav-placeholder"></div>
 
+    <div id="nav-placeholder"></div>
     <div class="container">
         <h1 class="title">Personas Registradas</h1>
         <div class="table-container">
@@ -96,7 +110,7 @@
                         <td>Viudo</td>
                         <td>
                             <button class="button is-primary"><a href="/views/others_views/modificarPersona.html"
-                                style="color: white;">Modificar</a></button>
+                                    style="color: white;">Modificar</a></button>
                             <button class="button is-danger" onclick="eliminarPersona(129)">Eliminar</button>
                         </td>
                     </tr>
@@ -111,7 +125,7 @@
                         <td>Casado</td>
                         <td>
                             <button class="button is-primary"><a href="/views/others_views/modificarPersona.html"
-                                style="color: white;">Modificar</a></button>
+                                    style="color: white;">Modificar</a></button>
                             <button class="button is-danger" onclick="eliminarPersona(130)">Eliminar</button>
                         </td>
                     </tr>
@@ -126,7 +140,7 @@
                         <td>Casado</td>
                         <td>
                             <button class="button is-primary"><a href="/views/others_views/modificarPersona.html"
-                                style="color: white;">Modificar</a></button>
+                                    style="color: white;">Modificar</a></button>
                             <button class="button is-danger" onclick="eliminarPersona(131)">Eliminar</button>
                         </td>
                     </tr>
@@ -141,7 +155,7 @@
                         <td>Soltero</td>
                         <td>
                             <button class="button is-primary"><a href="/views/others_views/modificarPersona.html"
-                                style="color: white;">Modificar</a></button>
+                                    style="color: white;">Modificar</a></button>
                             <button class="button is-danger" onclick="eliminarPersona(132)">Eliminar</button>
                         </td>
                     </tr>
@@ -156,7 +170,7 @@
                         <td>Divorciado</td>
                         <td>
                             <button class="button is-primary"><a href="/views/others_views/modificarPersona.html"
-                                style="color: white;">Modificar</a></button>
+                                    style="color: white;">Modificar</a></button>
                             <button class="button is-danger" onclick="eliminarPersona(133)">Eliminar</button>
                         </td>
                     </tr>
@@ -186,7 +200,7 @@
                         <td>Divorciado</td>
                         <td>
                             <button class="button is-primary"><a href="/views/others_views/modificarPersona.html"
-                                style="color: white;">Modificar</a></button>
+                                    style="color: white;">Modificar</a></button>
                             <button class="button is-danger" onclick="eliminarPersona(135)">Eliminar</button>
                         </td>
                     </tr>
@@ -222,8 +236,6 @@
                     );
                 }
             });
-
-
         }
 
         // Insertar el contenido de nav.html en el placeholder
