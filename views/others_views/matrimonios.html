@@ -6,7 +6,6 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>Matrimonios</title>
     <!-- Incluye Bulma para el diseño -->
-    <link href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.0/css/bootstrap.min.css" rel="stylesheet" />
 
     <link href="https://cdn.jsdelivr.net/npm/bulma@0.9.3/css/bulma.min.css" rel="stylesheet">
     <style>
@@ -77,6 +76,133 @@
                 height: 50px;
             }
         }
+
+
+        /* ESTILOS VISTA INVITACION */
+        .box {
+            background-color: #d98b4266;
+        }
+
+        .content-general-inv {
+            display: grid;
+            grid-template-columns: 1fr 1fr 1fr;
+            gap: 15px;
+            /* Aumentar el espacio entre columnas */
+            padding: 20px;
+            /* Añadir espacio alrededor del contenido */
+
+            background-image: url('/resources/images/fondo-invitacion-boda.jpeg');
+        }
+
+        #box-col1-inv div h1,
+        #box-col1-inv div h2,
+        #box-col1-inv div h3 {
+            font-family: Georgia, 'Times New Roman', Times, serif;
+            color: #3b230d;
+            line-height: 1.5;
+            /* Mejorar la legibilidad */
+            text-align: center;
+            /* Centrar los textos */
+        }
+
+        #box-img-anillos-inv {
+            background-image: url('/resources/images/par-de-anillos.jpg');
+            background-size: cover;
+            background-position: center;
+            /* Centrar la imagen */
+            border-radius: 10px;
+            /* Bordes redondeados para darle un aspecto más suave */
+        }
+
+        #box-col2-inv {
+            display: grid;
+            grid-template-rows: 1fr 1fr;
+            gap: 10px;
+            /* Añadir espacio entre las filas */
+        }
+
+        #box-col2-inv #box-content-personas {
+            display: grid;
+            grid-template-rows: 1fr 1fr 1fr;
+            gap: 10px;
+            /* Espacio entre los nombres */
+        }
+
+        #box-name-persona1-inv,
+        #box-and-inv,
+        #box-name-persona2-inv,
+        #box-parrafo2-der-inv {
+            margin: 0 auto;
+            font-family: Georgia, 'Times New Roman', Times, serif;
+            color: #3b230d;
+            font-size: 20px;
+            /* Ajustar el tamaño de fuente para mayor legibilidad */
+        }
+
+
+        #box-parrafo2-der-inv {
+            text-align: center;
+            padding: 10px;
+            /* Añadir algo de espacio para que no se vea comprimido */
+            background-color: rgba(255, 255, 255, 0.8);
+            /* Fondo ligero para resaltar el texto */
+            border-radius: 8px;
+        }
+
+
+
+        .modal.show .modal-content {
+            transform: translateY(0);
+            opacity: 1;
+        }
+
+        /*Estilos boton close*/
+        /* Estilos boton close */
+        .btnCloseModal {
+            position: relative;
+            width: 2.5em;
+            height: 2.5em;
+            border: none;
+            background: rgba(180, 83, 107, 0.3);
+            /* color con más opacidad */
+            border-radius: 50%;
+            /* redondeado completo */
+            cursor: pointer;
+            /* mostrar el cursor de mano */
+            transition: background 0.5s;
+        }
+
+        /* Lineas cruz (X) */
+        .btnXModal,
+        .btnYModal {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            width: 1.5em;
+            height: 2px;
+            background-color: rgb(255, 255, 255);
+            transform-origin: center;
+        }
+
+        /* Rotación de las líneas para formar la cruz */
+        .btnXModal {
+            transform: translate(-50%, -50%) rotate(45deg);
+        }
+
+        .btnYModal {
+            transform: translate(-50%, -50%) rotate(-45deg);
+        }
+
+        /* Estilo al hacer hover sobre el botón */
+        .btnCloseModal:hover {
+            background-color: rgb(211, 21, 21);
+            /* cambia a rojo */
+        }
+
+        .btnCloseModal:active {
+            background-color: rgb(130, 0, 0);
+            /* más oscuro al hacer click */
+        }
     </style>
 </head>
 
@@ -126,7 +252,12 @@
         <div class="modal-background"></div>
         <div class="modal-content">
             <div class="box">
-                <span class="delete" aria-label="close"></span>
+                <button class="btnCloseModal">
+                    <span class="btnXModal"></span>
+                    <span class="btnYModal"></span>
+                </button>
+
+
                 <div id="modal-body">
                     <!-- Aquí se cargará el contenido de la vista invitacion -->
                 </div>
@@ -135,6 +266,7 @@
     </div>
 
     <script>
+
         document.addEventListener('DOMContentLoaded', function () {
             // Simular datos de matrimonios (en lugar de obtenerlos del servidor)
             var matrimonios = [
@@ -146,6 +278,8 @@
                     clausula: "Sin separación de bienes"
                 }
             ];
+
+
 
             // Mostrar número total de matrimonios
             document.getElementById("totalMatrimonios").textContent = matrimonios.length;
@@ -188,13 +322,13 @@
                 var fechaBodaCol = document.createElement("td");
                 fechaBodaCol.textContent = matrimonio.fecha_boda;
                 tr.appendChild(fechaBodaCol);
-                
+
                 // Columna de Cláusula
                 var clausulaCol = document.createElement("td");
                 clausulaCol.textContent = matrimonio.clausula;
                 tr.appendChild(clausulaCol);
 
-                var opcionesCol =document.createElement("td");
+                var opcionesCol = document.createElement("td");
                 opcionesCol.innerHTML = `
                     <div class="buttons is-centered">
                         <button class="button is-info open-modal" data-id="${matrimonio.id}">Ver Invitación</button>
@@ -211,13 +345,13 @@
             });
 
             // Modal funcionalidad
+            // Modal funcionalidad
             var modal = document.getElementById("invitacionModal");
-            var closeModal = document.querySelector(".delete");
+            var closeModal = document.querySelector(".btnCloseModal");
 
             closeModal.onclick = function () {
                 modal.classList.remove("is-active");
             };
-
             window.onclick = function (event) {
                 if (event.target == modal) {
                     modal.classList.remove("is-active");
@@ -227,10 +361,49 @@
             document.querySelectorAll('.open-modal').forEach(button => {
                 button.addEventListener('click', function () {
                     var id = this.getAttribute('data-id');
-                    document.getElementById('modal-body').innerHTML = `<h1 class="title">Invitación de Matrimonio ${id}</h1>`;
-                    modal.classList.add("is-active");
+                    var matrimonio = matrimonios.find(m => m.id == id); // Encuentra el matrimonio por ID
+
+                    if (matrimonio) {
+                        // Cargar los datos en el modal
+                        document.getElementById('modal-body').innerHTML = `
+                            <div class="content-general-inv">
+                                <div id="box-col1-inv">
+                                    <div>
+                                        <h1>Nuestra boda se acerca</h1>
+                                    </div>
+                                    <div>
+                                        <h2>Fecha:</h2>
+                                    </div>
+                                    <div id="box-fechaInviatacion-inv">
+                                        <h3>${matrimonio.fecha_boda}</h3>
+                                    </div>
+                                </div>
+            
+                                <div id="box-img-anillos-inv">
+                                    <img src="/resources/images/img-anillos.jpeg" alt="Imagen de anillos">
+                                </div>
+            
+                                <div id="box-col2-inv">
+                                    <div id="box-content-personas">
+                                        <div id="box-name-persona1-inv">
+                                            <div id="persona1-name">${matrimonio.persona1.name}</div>
+                                        </div>
+                                        <div id="box-and-inv">&</div>
+                                        <div id="box-name-persona2-inv">
+                                            <div id="persona2-name">${matrimonio.persona2.name}</div>
+                                        </div>
+                                    </div>
+                                    <div id="box-parrafo2-der-inv">
+                                        Estamos encantados de invitarte a celebrar nuestro matrimonio
+                                    </div>
+                                </div>
+                            </div>
+                        `;
+                        modal.classList.add("is-active");
+                    }
                 });
             });
+
 
             document.querySelectorAll('.btn-enviar-correo').forEach(button => {
                 button.addEventListener('click', function () {
